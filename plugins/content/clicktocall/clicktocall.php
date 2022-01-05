@@ -30,7 +30,6 @@ class PlgContentClickToCall extends CMSPlugin
         $pattern = '/(\W[0-9]{4})-? ?(\W[0-9]{4})/';
         $replacement = '<a href="tel:$1$2">$1$2</a>';
         $text = preg_replace($pattern, $replacement, $text);
-        
         return true;
     }
 }
