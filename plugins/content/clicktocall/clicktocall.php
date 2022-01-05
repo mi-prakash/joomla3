@@ -5,10 +5,6 @@ use Joomla\CMS\Plugin\CMSPlugin;
 
 class PlgContentClickToCall extends CMSPlugin
 {
-    function plgContentClickToCall( &$subject, $params )
-    {
-        parent::__construct( $subject, $params );
-    }
     public function onContentPrepare($context, &$row, &$params, $page = 0)
     {
         // Do not run this plugin when the content is being indexed
