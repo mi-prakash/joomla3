@@ -24,10 +24,12 @@ class PlgContentClickToCall extends CMSPlugin
     }
     protected function clickToCall(&$text, &$params)
     {
+        $phoneDigits1 = $this->params->get('phoneDigits1', 4);
+        $phoneDigits2 = $this->params->get('phoneDigits2', 4);
         // matches 4 numbers followed by an optional hyphen or space,
         // then followed by 4 numbers.
         // phone number is in the form XXXX-XXXX or XXXX XXXX
-        $pattern = '/(\W[0-9]{4})-? ?(\W[0-9]{4})/';
+        $pattern = '/(\W[0-9]{'.$phoneDigits1.'})-? ?(\W[0-9]{'.$phoneDigits2.'})/';
         $replacement = '<a href="tel:$1$2">$1$2</a>';
         $text = preg_replace($pattern, $replacement, $text);
         return true;
