@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade" client="administrator">
+    <name>Latest Extensions</name>
+    <author>Mahmudul Islam Prakash</author>
+    <creationDate>January 2022</creationDate>
+    <copyright>Copyright (C) 2022 Joomshaper. All rights reserved.</copyright>
+    <license> http://www.gnu.org/licenses/gpl-3.0.html</license>
+    <authorEmail>prakash@example.com</authorEmail>
+    <authorUrl>https://www.joomshaper.com/</authorUrl>
+    <version>1.0.0</version>
+    <description>Displays the most recently installed extensions.</description>
+    <files>
+        <filename module="mod_latestextensions">mod_latestextensions.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="count" type="text" default="5" label="Count" description="The number of items to display (default is 5)" />
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
