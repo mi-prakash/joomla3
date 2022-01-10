@@ -26,6 +26,8 @@ class FolioViewFolio extends HtmlView
         Factory::getApplication()->input->set('hidemainmenu', true);
         ToolbarHelper::title(Text::_('COM_FOLIO_MANAGER_FOLIO'), '');
         ToolbarHelper::save('folio.save');
+        ToolbarHelper::save2new('folio.save2new');
+        ToolbarHelper::save2copy('folio.save2copy');
         if (empty($this->item->id)) {
             ToolbarHelper::cancel('folio.cancel');
         } else {

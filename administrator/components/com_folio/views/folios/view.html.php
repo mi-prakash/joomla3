@@ -31,5 +31,8 @@ class FolioViewFolios extends HtmlView
         if ($canDo->get('core.admin')) {
             ToolbarHelper::preferences('com_folio');
         }
+        if ($canDo->get('core.delete')) {
+            ToolbarHelper::deleteList('', 'folios.delete', 'JTOOLBAR_DELETE');
+        }
     }
 }
