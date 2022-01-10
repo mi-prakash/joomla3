@@ -8,18 +8,20 @@ use Joomla\CMS\Router\Route;
         <thead>
             <th>Title</th>
             <th>Alias</th>
+            <th>Options</th>
         </thead>
         <h3>Folios Lists</h3>
         <tbody>
             <?php foreach ($this->items as $item) : ?>
                 <tr>
                     <td>
-                        <a href="<?php echo Route::_('index.php?option=com_folio&task=folio.edit&id=' . (int) $item->id); ?>">
-                            <?php echo $item->title; ?>
-                        </a>
+                        <?php echo $item->title; ?>
                     </td>
                     <td>
                         <?php echo $item->alias; ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo Route::_('index.php?option=com_folio&task=folio.edit&id=' . (int) $item->id); ?>" class="btn btn-primary btn-sm">Edit</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
