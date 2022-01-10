@@ -10,7 +10,8 @@ class FolioModelFolios extends ListModel
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                 'id', 'a.id', 
-                'title', 'a.title'
+                'title', 'a.title',
+                'alias', 'a.alias'
             );
         }
         parent::__construct($config);
@@ -20,7 +21,7 @@ class FolioModelFolios extends ListModel
         $db    = $this->getDbo();
         $query  = $db->getQuery(true);
         $query->select(
-            $this->getState('list.select', 'a.id, a.title')
+            $this->getState('list.select', 'a.id, a.title, a.alias')
         );
         $query->from($db->quoteName('#__folio') . ' AS a');
         return $query;

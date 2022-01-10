@@ -11,7 +11,7 @@ class FolioViewFolios extends HtmlView
     protected $items;
     public function display($tpl = null)
     {
-        $this->items    = $this->get('Items');
+        $this->items = $this->get('Items');
         if (count($errors = $this->get('Errors'))) {
             JError::raiseError(500, implode("\n", $errors));
             return false;
@@ -21,7 +21,7 @@ class FolioViewFolios extends HtmlView
     }
     protected function addToolbar()
     {
-        $canDo  = FolioHelper::getActions();
+        $canDo = FolioHelper::getActions();
         $bar = Toolbar::getInstance('toolbar');
         ToolbarHelper::title(Text::_('COM_FOLIO_MANAGER_FOLIOS'), '');
         ToolbarHelper::addNew('folio.add');
