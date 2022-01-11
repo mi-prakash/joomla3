@@ -4,13 +4,13 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 ?>
 <div class="mypreview">
+    <h3>Folios Lists</h3>
     <table class="table table-bordered table-striped">
-        <thead>
+        <thead class="table-th">
             <th>Title</th>
             <th>Alias</th>
             <th>Options</th>
         </thead>
-        <h3>Folios Lists</h3>
         <tbody>
             <?php foreach ($this->items as $item) : ?>
                 <tr>
@@ -21,7 +21,7 @@ use Joomla\CMS\Router\Route;
                         <?php echo $item->alias; ?>
                     </td>
                     <td>
-                        <a href="<?php echo Route::_('index.php?option=com_folio&task=folio.edit&id=' . (int) $item->id); ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="<?php echo Route::_('index.php?option=com_folio&view=folio&id=' . (int)$item->id); ?>" class="btn btn-info btn-small">Detail</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

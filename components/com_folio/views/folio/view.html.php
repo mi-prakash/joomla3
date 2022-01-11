@@ -12,9 +12,11 @@ class FolioViewFolio extends HtmlView
         $this->items = $this->get('Items');
         $app = Factory::getApplication();
         $params = $app->getParams();
+
         $this->assignRef('params', $params);
         if (count($errors = $this->get('Errors'))) {
-            JError::raiseError(500, implode("\n", $errors));
+            var_dump($errors);
+            // JError::raiseError(500, implode("\n", $errors));
             return false;
         }
         parent::display($tpl);

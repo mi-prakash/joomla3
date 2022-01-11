@@ -18,8 +18,8 @@ class FolioModelFolios extends ListModel
     }
     protected function getListQuery()
     {
-        $db    = $this->getDbo();
-        $query  = $db->getQuery(true);
+        $db = $this->getDbo();
+        $query = $db->getQuery(true);
         $query->select(
             $this->getState('list.select', 'a.id, a.title, a.alias')
         );

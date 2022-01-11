@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Model\ListModel;
 
-class FolioModelFolio extends ListModel
+class FolioModelUpdfolios extends ListModel
 {
     public function __construct($config = array())
     {
@@ -18,23 +18,20 @@ class FolioModelFolio extends ListModel
     }
     protected function populateState($ordering = null, $direction = null)
     {
-        $id = JRequest::getInt('id');
-        $this->setState('id', $id);
+        $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+        $this->setState('filter.search', $search);
+        $published = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_state', '', 'string');
+        $this->setState('filter.state', $published);
+        parent::populateState('a.ordering', 'asc');
     }
     protected function getListQuery()
     {
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         $query->select(
-            $this->getState(
-                'list.select',
-                'a.id, a.title, a.alias'
-            )
+            $this->getState('list.select', 'a.id, a.title, a.alias')
         );
         $query->from($db->quoteName('#__folio') . ' AS a');
-        if ($id = $this->getState('id')) {
-            $query->where('a.id = ' . (int) $id);
-        }
         return $query;
     }
 }
