@@ -16,14 +16,6 @@ class FolioModelUpdfolios extends ListModel
         }
         parent::__construct($config);
     }
-    protected function populateState($ordering = null, $direction = null)
-    {
-        $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
-        $this->setState('filter.search', $search);
-        $published = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_state', '', 'string');
-        $this->setState('filter.state', $published);
-        parent::populateState('a.ordering', 'asc');
-    }
     protected function getListQuery()
     {
         $db = $this->getDbo();

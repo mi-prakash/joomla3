@@ -23,6 +23,16 @@ if ($user->id == 0) {
                     <i class="icon-new"></i> <?php echo Text::_('JNEW') ?>
                 </button>
             </div>
+            <div class="btn-group">
+                <!-- <button type="button" class="btn btn-danger" onclick="Joomla.submitbutton('updfolio.delete')">
+                    <i class="icon-trash"></i> <?php echo Text::_('JTRASH') ?>
+                </button> -->
+
+                <button type="button" onclick="deleteNow()" class="btn btn-danger">
+	                <span class="icon-trash" aria-hidden="true"></span> Delete
+                </button>
+
+            </div>
         </div>
         <?php if (!empty($this->sidebar)) : ?>
         <div id="j-sidebar-container" class="span2">
@@ -32,20 +42,6 @@ if ($user->id == 0) {
         <?php else : ?>
         <div id="j-main-container">
         <?php endif; ?>
-            <div class="filter-search btn-group pull-left">
-                <label for="filter_search" class="element-invisible"><?php echo Text::_('COM_FOLIO_SEARCH_IN_TITLE');?></label>
-                <input type="text" name="filter_search" id="filter_search" placeholder="<?php echo Text::_('COM_FOLIO_SEARCH_IN_TITLE');?>" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo Text::_('COM_FOLIO_SEARCH_IN_TITLE'); ?>" />
-            </div>
-            <div class="btn-group pull-left">
-                <button class="btn hasTooltip" type="submit" title="<?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
-                <button class="btn hasTooltip" type="button" title="<?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?>" onclick="document.id('filter_search').value='';this.form.submit();"><i class="icon-remove"></i></button>
-            </div>
-
-
-            <div class="btn-group pull-right hidden-phone">
-                <label for="limit" class="element-invisible"><?php echo Text::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
-                <?php echo $this->pagination->getLimitBox(); ?>
-            </div>
         </div>
         <div class="clearfix"> </div>
         <table class="table table-striped" id="folioList">
@@ -67,13 +63,6 @@ if ($user->id == 0) {
                     </th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="10">
-                        <?php echo $this->pagination->getListFooter(); ?>
-                    </td>
-                </tr>
-            </tfoot>
             <tbody>
                 <?php foreach ($this->items as $i => $item) :
                     $canCheckin = $user->authorise('core.manage', 'com_checkin');
@@ -110,5 +99,16 @@ if ($user->id == 0) {
         <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
         <?php echo HTMLHelper::_('form.token'); ?>
     </form>
+    <script>
+        function deleteNow(now) {
+            console.log(document.adminForm.boxchecked.value);
+            // return;
+            if (document.adminForm.boxchecked.value == 0) {
+                alert(Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')); 
+            } else { 
+                // Joomla.submitbutton('updfolios.delete');
+            }
+        }
+    </script>
 <?php 
 }
