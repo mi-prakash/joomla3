@@ -100,13 +100,23 @@ if ($user->id == 0) {
         <?php echo HTMLHelper::_('form.token'); ?>
     </form>
     <script>
-        function deleteNow(now) {
+        function deleteNow() {
             console.log(document.adminForm.boxchecked.value);
             // return;
             if (document.adminForm.boxchecked.value == 0) {
                 alert(Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')); 
             } else { 
-                // Joomla.submitbutton('updfolios.delete');
+                Joomla.submitbutton('updfolios.delete');
+                /* jQuery.ajax({
+                    url: "index.php?option=com_folio&task=deleteRecord&format=raw",
+                    method: "POST",
+                    data: { ids : [1,23,4] },
+                    dataType: "JSON",
+                    cache: false,
+                    success: function(result){
+                        console.log(result);
+                    }
+                }); */
             }
         }
     </script>

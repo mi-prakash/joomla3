@@ -1,6 +1,8 @@
 <?php
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\MVC\Model\ListModel;
 
 class FolioModelFolio extends ListModel
@@ -36,5 +38,22 @@ class FolioModelFolio extends ListModel
             $query->where('a.id = ' . (int) $id);
         }
         return $query;
+    }
+
+    public function delete()
+    {
+        $cids = $_POST['cid'];
+        
+        if (count($cids) > 0) {
+            $db = $this->getDbo();
+            $query = $db->getQuery(true);
+            $query->delete($db->quoteName('#__folio'));
+            $query->where('id IN (' . implode(",", $cids) . ')');
+            $db->setQuery($query);
+            $result = $db->execute();
+
+            $app = Factory::getApplication();
+            $app->redirect(Route::_('index.php/manage-folios?view=updfolios'));
+        }
     }
 }
