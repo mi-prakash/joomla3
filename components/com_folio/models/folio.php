@@ -2,7 +2,10 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Session\Session;
 use Joomla\CMS\MVC\Model\ListModel;
 
 class FolioModelFolio extends ListModel
@@ -42,8 +45,12 @@ class FolioModelFolio extends ListModel
 
     public function delete()
     {
+        // Check for request forgeries
+		$this->checkToken();
+
         $cids = $_POST['cid'];
-        
+        $app = Factory::getApplication();
+
         if (count($cids) > 0) {
             $db = $this->getDbo();
             $query = $db->getQuery(true);
@@ -51,9 +58,33 @@ class FolioModelFolio extends ListModel
             $query->where('id IN (' . implode(",", $cids) . ')');
             $db->setQuery($query);
             $result = $db->execute();
-
-            $app = Factory::getApplication();
+            $count = count($cids);
+            $app->enqueueMessage($count . ' Item(s) deleted', 'success');
+            $app->redirect(Route::_('index.php/manage-folios?view=updfolios'));
+        } else {
+            $app->enqueueMessage('Please select an item from the list', 'error');
             $app->redirect(Route::_('index.php/manage-folios?view=updfolios'));
         }
+    }
+
+    protected function checkToken($method = 'post', $redirect = true)
+    {
+        $valid = Session::checkToken($method);
+
+		if (!$valid && $redirect)
+		{
+			$referrer = $this->input->server->getString('HTTP_REFERER');
+
+			if (!Uri::isInternal($referrer))
+			{
+				$referrer = 'index.php';
+			}
+
+			$app = Factory::getApplication();
+			$app->enqueueMessage(Text::_('JINVALID_TOKEN_NOTICE'), 'warning');
+			$app->redirect($referrer);
+		}
+
+		return $valid;
     }
 }

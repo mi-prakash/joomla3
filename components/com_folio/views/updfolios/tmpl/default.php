@@ -24,10 +24,6 @@ if ($user->id == 0) {
                 </button>
             </div>
             <div class="btn-group">
-                <!-- <button type="button" class="btn btn-danger" onclick="Joomla.submitbutton('updfolio.delete')">
-                    <i class="icon-trash"></i> <?php echo Text::_('JTRASH') ?>
-                </button> -->
-
                 <button type="button" onclick="deleteNow()" class="btn btn-danger">
 	                <span class="icon-trash" aria-hidden="true"></span> Delete
                 </button>
@@ -103,9 +99,9 @@ if ($user->id == 0) {
         function deleteNow() {
             console.log(document.adminForm.boxchecked.value);
             // return;
-            if (document.adminForm.boxchecked.value == 0) {
-                alert(Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')); 
-            } else { 
+            // if (document.adminForm.boxchecked.value == 0) {
+            //     alert('Please select an item from the list'); 
+            // } else { 
                 Joomla.submitbutton('updfolios.delete');
                 /* jQuery.ajax({
                     url: "index.php?option=com_folio&task=deleteRecord&format=raw",
@@ -117,7 +113,7 @@ if ($user->id == 0) {
                         console.log(result);
                     }
                 }); */
-            }
+            // }
         }
     </script>
 <?php 
